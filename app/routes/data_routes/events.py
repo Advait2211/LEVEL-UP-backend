@@ -44,6 +44,8 @@ def add_event():
     location = data.get('location')
     start_time_str = data.get('start_time')
     end_time_str = data.get('end_time')
+    start_photo_url = data.get('start_photo_url')
+    end_photo_url = data.get('end_photo_url')
 
     try:
         start_time = datetime.strptime(start_time_str, '%Y-%m-%d %H:%M')
@@ -68,6 +70,8 @@ def add_event():
         start_time=start_time,
         end_time=end_time,
         ngo_id=ObjectId(ngo_id),
+        start_photo_url=start_photo_url,
+        end_photo_url=end_photo_url
     )
     result = events_collection.insert_one(event.to_mongo().to_dict())
     if not result.acknowledged:

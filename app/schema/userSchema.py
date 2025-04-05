@@ -16,7 +16,11 @@ class User(Document):
     joined_ngos = ListField(ReferenceField('NGO'))
     events_attended = ListField(ReferenceField('Event'))
 
-    attendance_summary = DictField(field=FloatField())
+    attendance_summary = DictField(
+        field=DictField(
+            field=FloatField()
+        )
+    )   
 
     # Added fields from database
     session_token = StringField()

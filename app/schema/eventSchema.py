@@ -14,8 +14,8 @@ class Event(Document):
 
     date = DateTimeField(required=True)
     
-    start_photo_url = URLField()
-    end_photo_url = URLField()
+    start_photo_url = URLField(required=True)
+    end_photo_url = URLField(required=True)
 
     # participants list
     participants = ListField(ReferenceField(User))
