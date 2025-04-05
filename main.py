@@ -12,6 +12,7 @@ from app.routes.auth import auth_bp
 from app.routes.data_routes.users import users_bp
 from app.routes.data_routes.events import events_bp
 from app.routes.data_routes.ngos import ngo_bp
+from app.routes.data_routes.get_routes import get_routes_bp
 
 
 
@@ -111,6 +112,7 @@ app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(users_bp, url_prefix='/data')
 app.register_blueprint(events_bp, url_prefix='/data')
 app.register_blueprint(ngo_bp, url_prefix='/data')
+app.register_blueprint(get_routes_bp, url_prefix='/get')
 
 @app.route('/')
 def index():
