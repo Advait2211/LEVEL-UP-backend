@@ -20,9 +20,11 @@ class User:
         self.name = user_data.get('name', '')
         self.password_hash = user_data.get('password_hash')
         self.provider = user_data.get('provider', 'email')
+        self.profile_pic_url = user_data.get('profile_pic_url', '')
+        self.interests = user_data.get('interests', [])
 
     @staticmethod
-    def create(email, password=None, name=None, provider='email'):
+    def create(email, password=None, name=None, provider='email', profile_pic_url=None, interests=None):
         if not EMAIL_REGEX.match(email):
             raise ValueError("Invalid email format")
             
@@ -33,7 +35,10 @@ class User:
             'email': email,
             'name': name,
             'created_at': datetime.utcnow(),
-            'provider': provider
+            'provider': provider,
+            'profile_pic_url': profile_pic_url,
+            'interests': interests if interests else []
+
         }
 
         if password:

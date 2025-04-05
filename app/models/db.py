@@ -1,4 +1,5 @@
 from flask_pymongo import PyMongo
+from mongoengine import connect
 from authlib.integrations.flask_client import OAuth
 from flask_bcrypt import Bcrypt
 import os
@@ -17,9 +18,15 @@ def init_extensions(app):
     # mongo.init_app(app)
     # bcrypt.init_app(app)
 
-# Initialize MongoDB client
+# pymongo connection
 mongo_client = MongoClient(os.getenv("DATABASE_URL"))
 db = mongo_client[os.getenv("MONGO_DB_NAME")]
-
-# Collections
 users_collection = db["users"]
+ngos_collection = db["ngos"]
+events_collection = db["events"]
+
+# mongoengine connection
+connect(
+    db=os.getenv("MONGO_DB_NAME"),
+    host=os.getenv("DATABASE_URL")
+)
