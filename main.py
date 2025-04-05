@@ -21,16 +21,10 @@ load_dotenv()
 
 app = Flask(__name__)
 # Configure CORS
-CORS(app, resources={
-    r"/auth/*": {
-        "origins": ["http://localhost:3000"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"]
-    }
-})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Or for all routes (simpler but less secure)
-CORS(app, origins=["http://localhost:3000"])
+# CORS(app, origins=["http://localhost:3000"])
 
 required_vars = [
     "SECRET_KEY",
