@@ -1,0 +1,191 @@
+{
+    "users": [
+        {
+            "user_id": "user1",
+            "recent_interactions": [
+                {
+                    "course_id": "course7",
+                    "timestamp": "2025-04-03T08:09:22.188999"
+                },
+                {
+                    "course_id": "course1",
+                    "timestamp": "2025-04-03T04:09:22.188992"
+                },
+                {
+                    "course_id": "course9",
+                    "timestamp": "2025-04-02T04:09:22.189004"
+                },
+                {
+                    "course_id": "course2",
+                    "timestamp": "2025-04-01T17:09:22.189009"
+                },
+                {
+                    "course_id": "course5",
+                    "timestamp": "2025-04-01T15:09:22.188631"
+                }
+            ]
+        },
+        {
+            "user_id": "user2",
+            "recent_interactions": [
+                {
+                    "course_id": "course1",
+                    "timestamp": "2025-04-03T11:09:22.189026"
+                },
+                {
+                    "course_id": "course4",
+                    "timestamp": "2025-04-03T04:09:22.189030"
+                },
+                {
+                    "course_id": "course3",
+                    "timestamp": "2025-04-01T22:09:22.189018"
+                },
+                {
+                    "course_id": "course5",
+                    "timestamp": "2025-04-01T18:09:22.189022"
+                }
+            ]
+        },
+        {
+            "user_id": "user3",
+            "recent_interactions": [
+                {
+                    "course_id": "course9",
+                    "timestamp": "2025-04-02T11:09:22.189044"
+                },
+                {
+                    "course_id": "course9",
+                    "timestamp": "2025-04-02T01:09:22.189036"
+                },
+                {
+                    "course_id": "course3",
+                    "timestamp": "2025-04-01T19:09:22.189040"
+                }
+            ]
+        },
+        {
+            "user_id": "user4",
+            "recent_interactions": [
+                {
+                    "course_id": "course3",
+                    "timestamp": "2025-04-02T21:09:22.189049"
+                },
+                {
+                    "course_id": "course4",
+                    "timestamp": "2025-04-02T05:09:22.189053"
+                },
+                {
+                    "course_id": "course2",
+                    "timestamp": "2025-04-01T14:09:22.189056"
+                }
+            ]
+        },
+        {
+            "user_id": "user5",
+            "recent_interactions": [
+                {
+                    "course_id": "course6",
+                    "timestamp": "2025-04-03T10:09:22.189062"
+                },
+                {
+                    "course_id": "course2",
+                    "timestamp": "2025-04-02T13:09:22.189072"
+                },
+                {
+                    "course_id": "course4",
+                    "timestamp": "2025-04-02T08:09:22.189068"
+                },
+                {
+                    "course_id": "course4",
+                    "timestamp": "2025-04-01T20:09:22.189065"
+                }
+            ]
+        }
+    ],
+    "courses": [
+        {
+            "course_id": "course1",
+            "tags": [
+                "Big Data",
+                "Web Development",
+                "AI",
+                "Python"
+            ]
+        },
+        {
+            "course_id": "course2",
+            "tags": [
+                "ML",
+                "Neural Networks"
+            ]
+        },
+        {
+            "course_id": "course3",
+            "tags": [
+                "Big Data",
+                "Data Science",
+                "Python",
+                "Neural Networks",
+                "Cloud Computing"
+            ]
+        },
+        {
+            "course_id": "course4",
+            "tags": [
+                "ML",
+                "Python",
+                "Big Data",
+                "Web Development"
+            ]
+        },
+        {
+            "course_id": "course5",
+            "tags": [
+                "Neural Networks",
+                "Data Science",
+                "Big Data",
+                "Deep Learning"
+            ]
+        },
+        {
+            "course_id": "course6",
+            "tags": [
+                "Data Science",
+                "Python",
+                "Statistics"
+            ]
+        },
+        {
+            "course_id": "course7",
+            "tags": [
+                "Data Science",
+                "Web Development",
+                "Cloud Computing"
+            ]
+        },
+        {
+            "course_id": "course8",
+            "tags": [
+                "Python",
+                "AI"
+            ]
+        },
+        {
+            "course_id": "course9",
+            "tags": [
+                "ML",
+                "AI",
+                "Big Data",
+                "Deep Learning"
+            ]
+        },
+        {
+            "course_id": "course10",
+            "tags": [
+                "Big Data",
+                "Statistics",
+                "Cloud Computing"
+            ]
+        }
+    ]
+}

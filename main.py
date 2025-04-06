@@ -15,6 +15,7 @@ from app.routes.data_routes.ngos import ngo_bp
 from app.routes.data_routes.get_routes import get_routes_bp
 from app.services.attendance_calc import attendance_calc_bp
 from app.routes.register import register_bp
+from app.services.recommender import recommender_bp
 
 
 
@@ -111,6 +112,7 @@ app.register_blueprint(ngo_bp, url_prefix='/data')
 app.register_blueprint(get_routes_bp, url_prefix='/get')
 app.register_blueprint(attendance_calc_bp, url_prefix='/attendance')
 app.register_blueprint(register_bp, url_prefix='/register')
+app.register_blueprint(recommender_bp, url_prefix='/recommender')
 
 @app.route('/')
 def index():
