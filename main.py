@@ -14,6 +14,7 @@ from app.routes.data_routes.events import events_bp
 from app.routes.data_routes.ngos import ngo_bp
 from app.routes.data_routes.get_routes import get_routes_bp
 from app.services.attendance_calc import attendance_calc_bp
+from app.routes.register import register_bp
 
 
 
@@ -109,6 +110,7 @@ app.register_blueprint(events_bp, url_prefix='/data')
 app.register_blueprint(ngo_bp, url_prefix='/data')
 app.register_blueprint(get_routes_bp, url_prefix='/get')
 app.register_blueprint(attendance_calc_bp, url_prefix='/attendance')
+app.register_blueprint(register_bp, url_prefix='/register')
 
 @app.route('/')
 def index():
