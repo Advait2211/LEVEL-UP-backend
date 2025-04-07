@@ -23,10 +23,10 @@ load_dotenv()
 
 app = Flask(__name__)
 # Configure CORS
-CORS(app, resources={r"/*": {"origins": "*"}})
+# CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Or for all routes (simpler but less secure)
-# CORS(app, origins=["http://localhost:3000"])
+CORS(app)
 
 required_vars = [
     "SECRET_KEY",
@@ -124,4 +124,4 @@ def index():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

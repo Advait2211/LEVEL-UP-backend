@@ -9,6 +9,7 @@ events_bp = Blueprint('events', __name__)
 @events_bp.route('/events', methods=['POST'])
 def add_event():
     data = request.get_json()
+    print(data)
     if not data:
         return jsonify({'error': 'No data provided'}), 400
     ngo_id = data.get('ngo_id')

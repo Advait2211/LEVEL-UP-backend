@@ -41,13 +41,26 @@ attendance_calc_bp = Blueprint('attendance_calc', __name__)
 
 @attendance_calc_bp.route('/process_event', methods=['POST'])
 def process_event():
+    # Save the images passed from the frontend to the database
     data = request.get_json()
     if not data:
         return jsonify({'error': 'No data provided'}), 400
 
     event_id = data.get('event_id')
-    if not event_id:
-        return jsonify({"status": "error", "message": "No event_id provided"}), 400
+    start_photo_base64 = data.get('start_photo')
+    end_photo_base64 = data.get('end_photo')
+
+    if not event_id or not start_photo_base64 or not end_photo_base64:
+        return jsonify({"status": "error", "message": "Missing event_id or photos"}), 400
+
+    # Update the event document with the provided images
+    events_collection.update_one(
+        {"_id": ObjectId(event_id)},
+        {"$set": {
+            "start_photo_url": start_photo_base64,
+            "end_photo_url": end_photo_base64
+        }}
+    )
 
     event = events_collection.find_one({"_id": ObjectId(event_id)})
     if not event:
@@ -106,14 +119,26 @@ def process_event():
         # update events collection per user
         events_collection.update_one(
             {"_id": ObjectId(event_id)},
-            {"$set": {f"attendance.{ObjectId(p)}": value * duration}}
+            {"$set": {f"attendance.{ObjectId(p)}": value * duration / 100}}
         )
 
         # update users per event
         users_collection.update_one(
             {"_id": ObjectId(p)},
-            {"$set": {f"attendance_summary.{ObjectId(ngo)}.{event_id}": value * duration}}
+            {"$set": {f"attendance_summary.{ObjectId(ngo)}.{event_id}": value * duration / 100}}
         )
+    
+        # # Fetch and print user attendance for the given event_id
+        # attendance_data = events_collection.find_one(
+        #     {"_id": ObjectId(event_id)},
+        #     {"attendance": 1, "_id": 0}
+        # )
+
+        # if not attendance_data or "attendance" not in attendance_data:
+        #     return jsonify({"status": "error", "message": "No attendance data found"}), 404
+
+        # print("User Attendance for Event:", attendance_data["attendance"])
 
 
-    return jsonify({"status": "success", "message": "Image saved and event processed"})
+
+    return jsonify({"status": "success", "message": "Image saved and event processed"}), 200
