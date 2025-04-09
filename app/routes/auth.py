@@ -288,19 +288,40 @@ def github_authorize():
 # Protected route example
 @auth_bp.route('/me')
 def get_current_user():
-    auth_header = request.headers.get('Authorization')
-    if not auth_header or not auth_header.startswith('Bearer '):
-        return jsonify({'error': 'Unauthorized'}), 401
-    
-    token = auth_header.split(' ')[1]
-    user = verify_session_token(token)
-    
-    if not user:
-        return jsonify({'error': 'Invalid or expired token'}), 401
-    
-    return jsonify({
-        'id': user.id,
-        'email': user.email,
-        'name': user.name,
-        'provider': user.provider
-    })
+    try:
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            return jsonify({'error': 'Unauthorized'}), 401
+
+        token = auth_header.split(' ')[1]
+        user = verify_session_token(token)
+        
+        if not user:
+            return jsonify({'error': 'Invalid or expired token'}), 401
+
+        # Get user data with proper error handling
+        user_data = users_collection.find_one({'_id': ObjectId(user.id)})
+        if not user_data:
+            return jsonify({'error': 'User not found'}), 404
+
+        # Convert ObjectId to string and clean up data
+        user_data['id'] = str(user_data['_id'])
+        
+        # Remove fields we don't want to expose
+        user_data.pop('_id', None)
+        user_data.pop('password_hash', None)
+        user_data.pop('session_token', None)
+        user_data.pop('session_expires', None)
+
+        # Convert any remaining ObjectId fields to strings
+        for key, value in user_data.items():
+            if isinstance(value, ObjectId):
+                user_data[key] = str(value)
+            elif isinstance(value, list):
+                user_data[key] = [str(item) if isinstance(item, ObjectId) else item for item in value]
+
+        return jsonify(user_data)
+
+    except Exception as e:
+        print(f"Error in /me endpoint: {str(e)}")
+        return jsonify({'error': 'Internal server error'}), 500
